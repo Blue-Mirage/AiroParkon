@@ -15,6 +15,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { useTheme } from '@mui/material/styles';
 import Carousel from 'react-material-ui-carousel';
 import { products } from '../data/productsData'; // Adjust path
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import B1 from '../assets/Back/1.jpg';
 import B2 from '../assets/Back/2.jpg';
@@ -38,6 +39,17 @@ const Home = () => {
   const theme = useTheme();
   const backgroundImages = [B1, B2, B3, B4, B5];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Mobile if < 600px
+  const productsPerSlide = isMobile ? 1 : 3; // 1 product on mobile, 3 on larger screens
+  const chunkArray = (array, size) => {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+    return result;
+  };
+
+  const productGroups = chunkArray(products, productsPerSlide);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -104,9 +116,9 @@ const Home = () => {
               to="/explore"
               sx={{
                 backgroundColor:
-                  theme.palette.mode === 'light' ? theme.palette.primary.dark : theme.palette.primary.light,
+                  theme.palette.mode === 'light' ? theme.palette.primary.main : theme.palette.primary.light,
                 '&:hover': {
-                  backgroundColor: theme.palette.primary.main,
+                  backgroundColor: theme.palette.primary.dark,
                 },
                 padding: '10px 20px',
                 fontSize: '1.1rem',
@@ -118,8 +130,8 @@ const Home = () => {
         </Container>
       </Box>
 
-      {/* Our Projects Section */}
-      <Box sx={{ py: 6, backgroundColor: (theme) => theme.palette.background.paper }}>
+      {/* Our Products Section */}
+<Box sx={{ py: 6, backgroundColor: (theme) => theme.palette.background.paper }}>
   <Container maxWidth="lg">
     <Typography
       variant="h4"
@@ -140,66 +152,73 @@ const Home = () => {
       navButtonsAlwaysVisible
       navButtonsProps={{
         style: {
-          backgroundColor: 'primary.main',
-          color: 'primary.contrastText',
+          backgroundColor: theme.palette.primary.main,
+          color: theme.palette.primary.contrastText,
         },
       }}
       indicatorContainerProps={{ style: { marginTop: '20px' } }}
-      indicatorIconButtonProps={{ style: { color: 'primary.light' } }}
-      activeIndicatorIconButtonProps={{ style: { color: 'primary.main' } }}
+      indicatorIconButtonProps={{ style: { color: theme.palette.primary.light } }}
+      activeIndicatorIconButtonProps={{ style: { color: theme.palette.primary.main } }}
       sx={{ width: '100%' }}
     >
-      {products.map((product) => (
-        <Box key={product.id} sx={{ display: 'flex', justifyContent: 'center' }}>
-          <Card
-            component={RouterLink}
-            to={product.route}
-            sx={{
-              textDecoration: 'none',
-              boxShadow: 3,
-              borderRadius: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              height: '100%',
-              maxWidth: '360px',
-              width: '80%',
-            }}
-          >
-            <CardMedia
-              component="img"
-              sx={{ height: 240 }}
-              image={product.image}
-              alt={product.name}
-            />
-            <CardContent sx={{ flexGrow: 1 }}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
-                {product.name}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                {product.description || 'Brief description about the product goes here.'}
-              </Typography>
-            </CardContent>
-            <Box sx={{ p: 2 }}>
-              <Button
-                component={RouterLink}
-                to="/products"
-                variant="contained"
-                fullWidth
-                sx={{
-                  backgroundColor: 'primary.main',
-                  '&:hover': {
-                    backgroundColor: 'primary.dark',
-                  },
-                }}
-                onClick={(e) => e.stopPropagation()} // prevent card click
-              >
-                View All Products
-              </Button>
-            </Box>
-          </Card>
+      {productGroups.map((group, index) => (
+        <Box key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Grid container spacing={2} justifyContent="center">
+            {group.map((product) => (
+              <Grid item xs={12} sm={4} key={product.id}>
+                <Card
+                  component={RouterLink}
+                  to={product.route}
+                  sx={{
+                    textDecoration: 'none',
+                    boxShadow: 3,
+                    borderRadius: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: '100%',
+                    maxWidth: isMobile ? '100%' : '360px',
+                    width: '100%',
+                  }}
+                >
+                  <CardMedia
+                    component="img"
+                    sx={{ height: 240 }}
+                    image={product.image}
+                    alt={product.name}
+                  />
+                  <CardContent sx={{ flexGrow: 1 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 'bold', color: 'primary.main' }}>
+                      {product.name}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {product.subProducts
+                        .map((sub) => sub.name)
+                        .join(', ') || 'Brief description about the product goes here.'}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
         </Box>
       ))}
     </Carousel>
+    <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center' }}>
+      <Button
+        component={RouterLink}
+        to="/products"
+        variant="contained"
+        sx={{
+          backgroundColor: 'primary.main',
+          '&:hover': {
+            backgroundColor: 'primary.dark',
+          },
+          padding: '10px 20px',
+        }}
+      >
+        View All Products
+      </Button>
+    </Box>
   </Container>
 </Box>
 

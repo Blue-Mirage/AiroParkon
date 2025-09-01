@@ -22,7 +22,6 @@ import TwoDP from './pages/products/subproducts/2DP';
 import ThreeDP from './pages/products/subproducts/3DP';
 import FourDP from './pages/products/subproducts/4DP';
 import ThreeIP from './pages/products/subproducts/3IP';
-import ThreeRP from './pages/products/subproducts/3RP';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -69,8 +68,6 @@ function App() {
               <Route path="/pitpark/3dp" element={<ThreeDP />} />
               <Route path="/pitpark/4dp" element={<FourDP />} />
               <Route path="/pitpark/3ip" element={<ThreeIP />} />
-              <Route path="/pitpark/3rp" element={<ThreeRP />} />
-
             </Routes>
             <EdgeBall />
           </main>

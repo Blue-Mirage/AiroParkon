@@ -14,7 +14,7 @@ export default function Header({ darkMode, setDarkMode }) {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
   return (
-    <AppBar position="sticky" sx={{backgroundColor: (theme) => theme.palette.primary.main}}>
+    <AppBar position="sticky" sx={{backgroundColor: (theme) => theme.palette.primary.dark}}>
       <Toolbar className="flex justify-between">
         <Box sx={{ flexGrow: 1 }}>
           <img src={logo} alt="Airo Parkon Logo" style={{ height: '40px', filter: isDarkMode ? 'brightness(0) invert(1)' : 'none', transition: 'filter 0.3s ease' }} />
