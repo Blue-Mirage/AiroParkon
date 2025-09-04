@@ -20,8 +20,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import B1 from '../assets/Back/1.jpg';
 import B2 from '../assets/Back/2.jpg';
 import B3 from '../assets/Back/3.jpg';
-import B4 from '../assets/Back/4.jpg';
-import B5 from '../assets/Back/5.jpg';
+//import B4 from '../assets/Back/4.jpg';
+//import B5 from '../assets/Back/5.jpg';
 
 import Project1 from '../assets/Project/Proj1.jpg';
 import Project2 from '../assets/Project/Proj2.jpg';
@@ -37,7 +37,7 @@ import About from '../assets/About_Us.mp4';
 
 const Home = () => {
   const theme = useTheme();
-  const backgroundImages = [B1, B2, B3, B4, B5];
+  const backgroundImages = [B1, B2, B3];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Mobile if < 600px
   const productsPerSlide = isMobile ? 1 : 3; // 1 product on mobile, 3 on larger screens
@@ -159,7 +159,7 @@ const Home = () => {
       indicatorContainerProps={{ style: { marginTop: '20px' } }}
       indicatorIconButtonProps={{ style: { color: theme.palette.primary.light } }}
       activeIndicatorIconButtonProps={{ style: { color: theme.palette.primary.main } }}
-      sx={{ width: '100%' }}
+      sx={{ width: '100%', zIndex : '900' }}
     >
       {productGroups.map((group, index) => (
         <Box key={index} sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -247,7 +247,7 @@ const Home = () => {
       </Box>
 
       {/* Know About Us Section */}
-      <Box sx={{ py: 8, backgroundColor: theme.palette.background.paper }}>
+      <Box sx={{ py: 8, backgroundColor: theme.palette.background.paper, color: theme.palette.text.primary }}>
         <Container maxWidth="lg">
           <Typography variant="h3" sx={{ textAlign: 'center', mb: 4, fontWeight: 'bold' }}>
             Know About Us
@@ -296,7 +296,7 @@ const Home = () => {
       </Box>
 
       {/* Our Clients Section */}
-      <Box sx={{ py: 6, backgroundColor: theme.palette.background.default }}>
+      <Box sx={{ py: 6, backgroundColor: theme.palette.background.default, color: theme.palette.text.primary }}>
         <Container maxWidth="lg">
           <Typography variant="h4" sx={{ textAlign: 'center', mb: 4, fontWeight: 'bold' }}>
             Our Clients

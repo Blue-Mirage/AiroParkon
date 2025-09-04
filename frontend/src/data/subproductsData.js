@@ -3,9 +3,8 @@ import TwoDP1 from '../assets/Products/pitpark/2dp/2DP-one.jpg';
 import ThreeDP1 from '../assets/Products/pitpark/3dp/3DP-one.jpg';
 import FourDP1 from '../assets/Products/pitpark/4dp/4DP-one.jpg';
 import TwoIP1 from '../assets/Products/pitpark/2ip/2IP-one.jpg';
-import ThreeRP1 from '../assets/Products/pitpark/3rp/3RP-one.jpg';
 import ThreeIP1 from '../assets/Products/pitpark/3ip/3IP-one.jpg';
-
+import VPark from '../assets/Products/vertipark/tower/AP-003.jpg';
 
 export const pitParkSubProducts = [
   {
@@ -69,15 +68,16 @@ export const pitParkSubProducts = [
     route: '/pitpark/3ip',
   },
   {
-    id: '3RP',
-    name: '3RP',
-    description: `3RP uses 3 platforms, 2 of which...`,
-    image: ThreeRP1,
+    id: 'Tower',
+    name: 'Tower',
+    description: `Tower uses multiple platforms, each on top of each another`,
+    image: VPark,
     specs: {
       loadingCapacity: '2000 Kgs per car',
       drive: 'Hydraulic',
       // Add more specs as needed
     },
-    route: '/pitpark/3rp',
+    route: '/vertipark/tower',
   },
+
 ];

@@ -2,6 +2,7 @@
 import ppimg from '../assets/Products/pitpark/2dp/2DP-one.jpg';
 import spimg from '../assets/Products/stackpark/2ds/2DS-one.jpg';
 import puzpimg from '../assets/Products/puzzlepark/2hc/2HC-one.jpg';
+import vpimg from '../assets/Products/vertipark/tower/AP-003.jpg';
 
 export const products = [
   {
@@ -32,6 +33,16 @@ export const products = [
     subProducts: [
       { id: 1, name: 'PuzzlePark Standard', description: '' },
       { id: 2, name: 'PuzzlePark Enhanced', description: '' },
+    ],
+  },
+  {
+    id: 4,
+    name: 'VertiPark',
+    route: '/vertipark',
+    image: vpimg, // Replace with your image path
+    subProducts: [
+      { id: 1, name: 'VertiPark 2 Levels', description: '' },
+      { id: 2, name: 'VertiPark 3 Levels', description: '' },
     ],
   },
 ];

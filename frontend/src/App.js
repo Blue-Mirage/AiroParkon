@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { lightTheme, darkTheme } from './theme';
+import EdgeBall from './components/EdgeBall';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import BreatheIn from './pages/BreatheIn';
 import Switch from '@mui/material/Switch';
-import EdgeBall from './components/EdgeBall';
 import Products from './pages/Products';
 import PitPark from './pages/products/PitPark';
 import StackPark from './pages/products/StackPark';
@@ -51,7 +51,9 @@ function App() {
             <Switch checked={darkMode} onChange={handleThemeChange} color="primary" />
           </div>
           <Header darkMode={darkMode} setDarkMode={setDarkMode} />
-          <main className="flex-grow">
+          
+          <main className="flex-grow z-50">
+            <EdgeBall sx={{ zIndex : '1000' }}/>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/products" element={<Products />} />
@@ -69,7 +71,7 @@ function App() {
               <Route path="/pitpark/4dp" element={<FourDP />} />
               <Route path="/pitpark/3ip" element={<ThreeIP />} />
             </Routes>
-            <EdgeBall />
+            
           </main>
           <Footer darkMode={darkMode} setDarkMode={setDarkMode} />
         </div>
