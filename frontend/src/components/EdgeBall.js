@@ -1,6 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 import { Box, IconButton, useTheme } from '@mui/material';
-import { FaBars, FaHome, FaUser, FaCalendarAlt, FaImages, FaInfo } from 'react-icons/fa';
+import { FaBars, FaHome, FaShoppingCart, FaMapMarkerAlt, FaWhatsapp, FaEnvelope } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const EdgeBall = memo(() => {
@@ -63,7 +63,7 @@ const EdgeBall = memo(() => {
       >
         <IconButton
           aria-label="Home"
-          onClick={() => scrollToBox('Home')}
+          onClick={() => scrollToBox('hero')}
           sx={{
             width: '50px',
             height: '50px',
@@ -79,8 +79,9 @@ const EdgeBall = memo(() => {
           <FaHome size={20} />
         </IconButton>
         <IconButton
-          aria-label="Profile"
-          onClick={() => navigate('/signup')}
+          aria-label="Products"
+          onClick={() => navigate('/products')}
+          zIndex="999"
           sx={{
             width: '50px',
             height: '50px',
@@ -93,11 +94,12 @@ const EdgeBall = memo(() => {
             '&:hover': { bgcolor: submenuHoverColor },
           }}
         >
-          <FaUser size={20} />
+          <FaShoppingCart size={20} />
         </IconButton>
         <IconButton
-          aria-label="Events"
-          onClick={() => scrollToBox('Event')}
+          aria-label="Locations"
+          onClick={() => scrollToBox('locations')}
+          zIndex="999"
           sx={{
             width: '50px',
             height: '50px',
@@ -110,11 +112,12 @@ const EdgeBall = memo(() => {
             '&:hover': { bgcolor: submenuHoverColor },
           }}
         >
-          <FaCalendarAlt size={20} />
+          <FaMapMarkerAlt size={20} />
         </IconButton>
         <IconButton
-          aria-label="Gallery"
-          onClick={() => scrollToBox('Gallery')}
+          aria-label="WhatsApp"
+          onClick={() => window.open('https://wa.me/+917888824366', '_blank')} // Replace +1234567890 with the actual company WhatsApp number
+          zIndex="999"
           sx={{
             width: '50px',
             height: '50px',
@@ -127,11 +130,12 @@ const EdgeBall = memo(() => {
             '&:hover': { bgcolor: submenuHoverColor },
           }}
         >
-          <FaImages size={20} />
+          <FaWhatsapp size={20} />
         </IconButton>
         <IconButton
-          aria-label="About"
-          onClick={() => scrollToBox('About')}
+          aria-label="Contact"
+          onClick={() => scrollToBox('contact')}
+          zIndex="999"
           sx={{
             width: '50px',
             height: '50px',
@@ -144,7 +148,7 @@ const EdgeBall = memo(() => {
             '&:hover': { bgcolor: submenuHoverColor },
           }}
         >
-          <FaInfo size={20} />
+          <FaEnvelope size={20} />
         </IconButton>
       </Box>
     </Box>
